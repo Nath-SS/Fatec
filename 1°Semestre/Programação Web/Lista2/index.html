@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="Lista2.js" language="javascript" type="text/javascript"></script>
+    <title>Lista2</title>
+</head>
+<body>
+    <h1>Segunda lista de Exercicios</h1>
+    <form action="">
+        <div style="margin-bottom: 10px;">
+            <h3>1. Receba 2 valores inteiros. Calcule e mostre o resultado da diferença do maior pelo menor valor.</h3>
+            <input type="number" placeholder="Primeiro Valor" id="ex1">
+            <input type="number" placeholder="Segundo Valor" id="ex1_2">
+            <input type="button" onclick="Exerc1(ex1.value, ex1_2.value)" value="Enviar">
+        </div>
+
+       <div style="margin-bottom: 10px;">
+            <h3>2. Receba 3 valores obrigatoriamente em ordem crescente e um 4º valor não necessariamente em ordem. Mostre os 4 números em ordem crescente.</h3>
+            <input type="number" placeholder="Primeiro numero" id="ex2">
+            <input type="number" placeholder="Segundo numero" id="ex2_2">
+            <input type="number" placeholder="Terceiro numero" id="ex2_3">
+            <input type="number" placeholder="Quarto numero" id="ex2_4">
+            <input type="button" onclick="Exerc2(ex2.value, ex2_2.value, ex2_3.value, ex2_4.value)" value="Enviar">
+       </div>
+
+       <div style="margin-bottom: 10px;">
+            <h3>3. Receba o código correspondente ao cargo de um funcionário e seu salário atual e mostre a descrição do cargo, e o valor do seu novo salário.
+                 Os cargos estão na tabela.</h3>
+            <input type="number" placeholder="Código do seu cargo" id="ex3">
+            <input type="number" placeholder="Seu salário atual" id="ex3_2">
+            <input type="button" onclick="Exerc3(ex3.value, ex3_2.value)" value="Enviar">
+       </div>
+
+        <div style="margin-bottom: 10px;">
+            <h3>4. Receba 5 notas do aluno durante o semestre letivo, calcule a média do aluno e informe se ele foi aprovado ou reprovado.
+                   Para Nota maior igual a 6 o sistema deverá exibir a mensagem “Aprovado” com a nota do aluno.
+                   Para Nota menor 6 o sistema deve exibir “Reprovado” com a nota do aluno.</h3>
+            <input type="number" placeholder="Primeira nota" id="ex4">
+            <input type="number" placeholder="Segunda nota" id="ex4_2">
+            <input type="number" placeholder="Terceira nota" id="ex4_3">
+            <input type="number" placeholder="Quarta nota" id="ex4_4">
+            <input type="number" placeholder="Quinta nota" id="ex4_5">
+            <input type="button" onclick="Exerc4(ex4.value, ex4_2.value, ex4_3.value, ex4_4.value, ex4_5.value)" value="Enviar">
+        </div>
+
+       <div style="margin-bottom: 10px;">
+            <h3>5. Receba em tela um valor informado pelo usuário. Utilizando um menu de opções, apresente:</h3>
+            <input type="number" placeholder="Valor de 1 a 4" id="ex5">
+            <input type="button" onclick="Exerc5(ex5.value)" value="Enviar">
+       </div>
+    </form>
+    
+</body>
+</html>

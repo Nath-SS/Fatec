@@ -1,0 +1,6 @@
+Usuario - Id, Nome, Senha, Email, Endereco
+Brinquedo - Id, Nome, idCategoria, preço, qntd, descrição
+CategoriaBrinquedo - Id, nome, descrição
+Carrinho/Pedido - Id, idUsuario, idItemCarrinho, valorTotal
+ItemCarrinho - Id, idBrinquedo, qntd
+formaPagamento - Id, nome

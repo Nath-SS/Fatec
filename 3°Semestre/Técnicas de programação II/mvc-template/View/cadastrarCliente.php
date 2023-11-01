@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Sign in</title>
+</head>
+<body>
+    <div class="header">
+        <ul class="menu">
+            <li class="menu-title"><a href="menu.html">Home</a></li>
+            <li class="menu-items"><a href="#">Clientes</a>
+                <ul class="submenu">
+                    <li><a href="cadastrarCliente.php">Cadastrar Cliente</a></li>
+                    <li><a href="atualizarCliente.php">Atualizar Cliente</a></li>
+                    <li><a href="removerCliente.php">Remover Cliente</a></li>
+                    <li><a href="consultaCliente.php">Consultar Cliente</a></li>
+                    <li><a href="../index.php?classe=Cliente&metodo=listar">Listar Clientes</a></li>
+                </ul>
+            </li>
+            <li class="menu-items"><a href="#">Pedidos</a>
+                <ul class="submenu">
+                    <li><a href="realizarPedido.php">Realizar Pedido</a></li>
+                    <li><a href="atualizarPedido.php">Atualizar Pedido</a></li>
+                    <li><a href="excluirPedido.php">Excluir Pedido</a></li>
+                    <li><a href="consultaPedido.php">Consultar Pedido</a></li>
+                    <li><a href="../index.php?classe=Pedido&metodo=listar">Listar Pedidos</a></li>
+                </ul>
+            </li>
+            <li class="menu-items"><a href="#">Produtos</a>
+                <ul class="submenu">
+                    <li><a href="adicionarProduto.html">Adicionar Produto</a></li>
+                    <li><a href="#">Atualizar Produto</a></li>
+                    <li><a href="#">Remover Produto</a></li>
+                    <li><a href="#">Consultar Produto</a></li>
+                    <li><a href="#">Listar Produtos</a></li>
+                </ul>
+            </li>
+            <li class="menu-items"><a href="#">Entre em contato</a></li>
+        </ul>
+    </div>
+<section class="main">
+    <?php
+        session_start();
+        if(isset($_SESSION['sucesso'])){
+            echo($_SESSION['sucesso']);
+            session_destroy();
+        }else if(isset($_SESSION['falha'])){
+            echo($_SESSION['falha']);
+            session_destroy();
+        }
+    
+    ?>
+    <div class="container-form">
+        <h2>Cadastrar Cliente</h2>
+
+        <form class="form-cadastro" action="../index.php?classe=Cliente&metodo=inserir" method="post">
+            <input type="text" name="txtNome" placeholder="Nome" required>
+            <input type="email"name="txtEmail" placeholder="Email" required>
+            <input type="date" name="txtDN" required>
+            <input type="text" name="txtRg" placeholder="RG" required>
+            <input type="text" name="txtCpf" placeholder="CPF" required>
+            <input type="text" name="txtEndereco" placeholder="Endereço" required>
+            <button type="submit" class="btn-cadastro">Cadastrar</button>
+        </form>
+    </div>
+</section>
+
+</body>
+</html>

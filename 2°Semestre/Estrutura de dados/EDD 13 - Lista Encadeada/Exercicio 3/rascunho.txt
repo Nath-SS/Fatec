@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+ 
+
+int tamanho(Lista L) {
+    int t =0;
+    while(L ) {
+        t++;
+        L =L->prox;
+    }
+    return t;
+}
+
+ 
+
+int main(void) {
+    Lista I = no(3,no(1,no(5,NULL)));
+    exibe(I);
+    printf("Tamanho = %d\n",tamanho(I));
+    return 0;
+}

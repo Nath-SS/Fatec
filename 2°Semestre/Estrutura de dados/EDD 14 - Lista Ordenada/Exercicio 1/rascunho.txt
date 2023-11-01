@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void ins(Item x, Lista *L){
+	while(*L != NULL && (*L)->item < x){
+		L = &(*L)->prox;
+	}
+	*L = no(x, *L);
+}
+
+
+int main void(){
+	Lista I = NULL;
+	ins(4, &I);
+	ins(1, &I);
+	ins(3, &I);
+	ins(5, &I);
+	ins(2, &I);
+	exibe(I);
+	return 0;
+}

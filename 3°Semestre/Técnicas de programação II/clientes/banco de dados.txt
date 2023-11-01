@@ -1,0 +1,16 @@
+-- Criação do banco de dados (caso não exista)
+CREATE DATABASE IF NOT EXISTS MeuBancoDeDados;
+
+-- Utilização do banco de dados
+USE MeuBancoDeDados;
+
+-- Criação da tabela "Clientes"
+CREATE TABLE IF NOT EXISTS Clientes (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100),
+    Email VARCHAR(100),
+    DataNascimento DATE,
+    CPF VARCHAR(11),
+    RG VARCHAR(10),
+    Endereco VARCHAR(100)
+);

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sistema Acadêmico</title>
+</head>
+<body>
+	<form action="../ServletAluno" method="get">
+		<table border="1">
+			<input type="hidden" name="cmd" value="incluir">
+			<tr><th colspan="2"><h1>Cadastro de Alunos</h1></th></tr>
+			<tr>
+				<td>RA:</td>
+				<td><input type="text" name="txtRa" size="60" /></td>
+			</tr>
+			<tr>
+				<td>Nome:</td>
+				<td><input type="text" name="txtNome" size="60" /></td>
+			</tr>
+			<tr>
+				<td>E-mail:</td>
+				<td><input type="email" size="60" name="txtEmail" /></td>
+			</tr>
+			<tr>
+				<td>Endereço:</td>
+				<td><input type="text" size="60" name="txtEndereco" /></td>
+			</tr>
+			<tr>
+				<td>Data de Nascimento:</td>
+				<td><input type="date" size="10" name="txtData" /></td>
+			</tr>
+			<tr>
+				<td>Período</td>
+				<td><select size="1" name="cmbPeriodo">
+				<option>Manhã</option>
+				<option>Tarde</option>
+				<option>Noite</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" value="Enviar"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

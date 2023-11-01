@@ -1,0 +1,5 @@
+GET  	/api/alunos 	findAll();
+POST	/api/alunos 	save();
+DELETE  /api/alunos/id 	deleteById();
+GET 	/api/alunos/id 	findById();
+PUT	/api/alunos/id	save();
