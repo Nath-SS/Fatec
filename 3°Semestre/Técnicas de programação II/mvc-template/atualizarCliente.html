@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Novo pedido</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Sign in</title>
 </head>
 <body>
     <div class="header">
@@ -17,7 +17,7 @@
                     <li><a href="atualizarCliente.html">Atualizar Cliente</a></li>
                     <li><a href="removerCliente.html">Remover Cliente</a></li>
                     <li><a href="consultaCliente.html">Consultar Cliente</a></li>
-                    <li><a href="../index.php?Classe=Cliente&metodo=listar">Listar Clientes</a></li>
+                    <li><a href="index.php?Classe=Cliente&metodo=listar">Listar Clientes</a></li>
                 </ul>
             </li>
             <li class="menu-items"><a href="#">Pedidos</a>
@@ -41,13 +41,18 @@
             <li class="menu-items"><a href="#">Entre em contato</a></li>
         </ul>
     </div>
-<section class="main">
+<section class="main-form">
     <div class="container-form">
-        <h2>Consultar Pedido</h2>
+        <h2>Atualizar Cliente</h2>
 
-        <form class="form-cadastro" action="../index.php?classe=Pedido&metodo=consultar" method="post">
-            <input type="text" name="txtId" placeholder="Id do pedido" required>           
-            <button type="submit" class="btn-cadastro">Consultar</button>
+        <form class="form" action="index.php?classe=Cliente&metodo=atualizar" method="post">
+            <input type="text" name="txtNome" placeholder="Nome" required>
+            <input type="email"name="txtEmail" placeholder="Email" required>
+            <input type="date" name="txtDN" required>
+            <input type="text" name="txtRg" placeholder="RG" required>
+            <input type="text" name="txtCpf" placeholder="CPF" required>
+            <input type="text" name="txtEndereco" placeholder="Endereço" required>
+            <button type="submit" class="btn-form">Atualizar</button>
         </form>
     </div>
 </section>

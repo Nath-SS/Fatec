@@ -8,17 +8,22 @@
     <title>Menu</title>
 </head>
 <body>
+<?php 
+require_once '../Model/Cliente.php';
+session_start(); 
+
+?>
 <div class="header">
     <div class="header">
         <ul class="menu">
             <li class="menu-title"><a href="menu.html">Home</a></li>
             <li class="menu-items"><a href="#">Clientes</a>
                 <ul class="submenu">
-                    <li><a href="cadastrarCliente.php">Cadastrar Cliente</a></li>
-                    <li><a href="atualizarCliente.php">Atualizar Cliente</a></li>
-                    <li><a href="removerCliente.php">Remover Cliente</a></li>
-                    <li><a href="consultaCliente.php">Consultar Cliente</a></li>
-                    <li><a href="../index.php?Classe=Cliente&metodo=listar">Listar Clientes</a></li>
+                    <li><a href="cadastrarCliente.html">Cadastrar Cliente</a></li>
+                    <li><a href="atualizarCliente.html">Atualizar Cliente</a></li>
+                    <li><a href="removerCliente.html">Remover Cliente</a></li>
+                    <li><a href="consultaCliente.html">Consultar Cliente</a></li>
+                    <li><a href="index.php?Classe=Cliente&metodo=listar">Listar Clientes</a></li>
                 </ul>
             </li>
             <li class="menu-items"><a href="#">Pedidos</a>
@@ -27,7 +32,7 @@
                     <li><a href="atualizarPedido.html">Atualizar Pedido</a></li>
                     <li><a href="excluirPedido.html">Excluir Pedido</a></li>
                     <li><a href="consultaPedido.html">Consultar Pedido</a></li>
-                    <li><a href="../index.php?Classe=Pedido&metodo=listar">Listar Pedidos</a></li>
+                    <li><a href="index.php?Classe=Pedido&metodo=listar">Listar Pedidos</a></li>
                 </ul>
             </li>
             <li class="menu-items"><a href="#">Produtos</a>
@@ -43,6 +48,13 @@
         </ul>
     </div>
 </div>
+<section class="main-view">
+    <div class="container-view">
+        <h2><?php echo $_SESSION['classe'] ?> inserido com sucesso</h2>
+        <label for=""> Nome: </label><?php echo $_SESSION['dados']->nome ?>
+        
+    </div>
+</section>
 
 </body>
 </html>

@@ -26,8 +26,9 @@ Class ClienteController{
         session_start();
 
         if ($inserido) {
-            $_SESSION['sucesso'] = "<script>alert('Cliente inserido com sucesso!');</script>";;
-            header("location: View/cadastrarCliente.php");
+            $_SESSION['classe'] = "Cliente";
+            $_SESSION['dados'] = $cliente;
+            header("location: View/inserido.php");
    	    } 
         else {
             $_SESSION['falha'] = "<script>alert('Erro ao inserir o cliente.');</script>";;
@@ -77,11 +78,11 @@ Class ClienteController{
         
         if ($atualizado) {
             $_SESSION['sucesso'] = "<script>alert('Cliente atualizado com sucesso!');</script>";;
-            header("location: View/atualizarCliente.php");
+            header("location: View/atualizado.php");
    	    } 
         else {
             $_SESSION['falha'] = "<script>alert('Erro ao atualizar o cliente, cliente não encontrado');</script>";;
-            header("location: View/atualizarCliente.php");
+            header("location: atualizarCliente.html");
 	    }
     }
 }

@@ -60,7 +60,12 @@ class Cliente{
     }
 
     function atualizarCliente(){ //completo e funcional
-        $conexao = Conexao::pegarConexao(); 
+        $conexao = Conexao::pegarConexao();
+        
+        $querySelect = $conexao->prepare("SELECT idCliente WHERE nome = ?");
+        $querySelect->bindParam(1, $this->nome);
+        $this->idCliente = $querySelect->execute();
+
         $cmd = $conexao->prepare("UPDATE cliente SET
             nome    = ?, 
             email   = ?, 
@@ -68,7 +73,7 @@ class Cliente{
             rg = ?,
             cpf = ?,
             endereco = ?
-        WHERE nome = ?");
+        WHERE idCliente = ?");
         
         $cmd->bindParam(1, $this->nome);
         $cmd->bindParam(2, $this->email);
@@ -76,7 +81,7 @@ class Cliente{
         $cmd->bindParam(4, $this->rg);
         $cmd->bindParam(5, $this->cpf);
         $cmd->bindParam(6, $this->endereco);
-        $cmd->bindParam(7, $this->nome);
+        $cmd->bindParam(7, $this->idCliente);
         $cmd->execute();
     }
 

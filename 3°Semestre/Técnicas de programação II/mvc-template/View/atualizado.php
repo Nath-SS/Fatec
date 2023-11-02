@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Sign in</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Menu</title>
 </head>
 <body>
+<div class="header">
     <div class="header">
         <ul class="menu">
             <li class="menu-title"><a href="menu.html">Home</a></li>
@@ -17,7 +18,7 @@
                     <li><a href="atualizarCliente.html">Atualizar Cliente</a></li>
                     <li><a href="removerCliente.html">Remover Cliente</a></li>
                     <li><a href="consultaCliente.html">Consultar Cliente</a></li>
-                    <li><a href="../index.php?Classe=Cliente&metodo=listar">Listar Clientes</a></li>
+                    <li><a href="index.php?Classe=Cliente&metodo=listar">Listar Clientes</a></li>
                 </ul>
             </li>
             <li class="menu-items"><a href="#">Pedidos</a>
@@ -26,7 +27,7 @@
                     <li><a href="atualizarPedido.html">Atualizar Pedido</a></li>
                     <li><a href="excluirPedido.html">Excluir Pedido</a></li>
                     <li><a href="consultaPedido.html">Consultar Pedido</a></li>
-                    <li><a href="../index.php?Classe=Pedido&metodo=listar">Listar Pedidos</a></li>
+                    <li><a href="index.php?Classe=Pedido&metodo=listar">Listar Pedidos</a></li>
                 </ul>
             </li>
             <li class="menu-items"><a href="#">Produtos</a>
@@ -41,32 +42,10 @@
             <li class="menu-items"><a href="#">Entre em contato</a></li>
         </ul>
     </div>
-<section class="main">
-    <?php
-        session_start();
-        if(isset($_SESSION['sucesso'])){
-            echo($_SESSION['sucesso']);
-            session_destroy();
-        }else if(isset($_SESSION['falha'])){
-            echo($_SESSION['falha']);
-            session_destroy();
-        }
-    
-    ?>
-    <div class="container-form">
-        <h2>Atualizar Cliente</h2>
+</div>
 
-        <form class="form-cadastro" action="../index.php?classe=Cliente&metodo=atualizar" method="post">
-            <input type="text" name="txtNome" placeholder="Nome" required>
-            <input type="email"name="txtEmail" placeholder="Email" required>
-            <input type="date" name="txtDN" required>
-            <input type="text" name="txtRg" placeholder="RG" required>
-            <input type="text" name="txtCpf" placeholder="CPF" required>
-            <input type="text" name="txtEndereco" placeholder="Endereço" required>
-            <button type="submit" class="btn-cadastro">Atualizar</button>
-        </form>
-    </div>
-</section>
+Cliente atualizado com sucesso
+
 
 </body>
 </html>
