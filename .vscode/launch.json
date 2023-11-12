@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LojaDeBrinquedosApplication<br.com.fantasystar-LojaDeBrinquedos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.lojabrinquedos.fantasystar.LojaDeBrinquedosApplication",
+            "projectName": "br.com.fantasystar-LojaDeBrinquedos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
