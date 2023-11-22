@@ -68,7 +68,7 @@ class Cliente{
             rg = ?,
             cpf = ?,
             endereco = ?
-        WHERE nome = ?");
+        WHERE idCliente = ?");
         
         $cmd->bindParam(1, $this->nome);
         $cmd->bindParam(2, $this->email);
@@ -76,7 +76,7 @@ class Cliente{
         $cmd->bindParam(4, $this->rg);
         $cmd->bindParam(5, $this->cpf);
         $cmd->bindParam(6, $this->endereco);
-        $cmd->bindParam(7, $this->nome);
+        $cmd->bindParam(7, $this->idCliente);
         $cmd->execute();
     }
 

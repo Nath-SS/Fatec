@@ -15,15 +15,36 @@ class ClientePresenter {
     }
 
     public function processarRequisicao() {
-        if (isset($_POST['Teste'])) {
-            $this->clienteView->teste();
-            /*$nome = $_POST['nome'];
-            $email = $_POST['email'];
-            $this->model->adicionarCliente($nome, $email);
-            // Você também pode adicionar lógica para exibir uma mensagem de sucesso na View.
-            */
+        if (isset($_POST['Adicionar'])) {
+            //echo 'deu certo';
+            
+            $this->cliente->nome = $_POST['txtNome'];
+            $this->cliente->email = $_POST['txtEmail'];
+            $this->cliente->dataNascimento = $_POST['txtDN'];
+            $this->cliente->rg = $_POST['txtRg'];
+            $this->cliente->cpf = $_POST['txtCpf'];
+            $this->cliente->endereco = $_POST['txtEndereco'];
+            $inserido = $this->cliente->inserirCliente();
+
+            if($inserido){
+                $this->clienteView->Adicionado();
+            }else{
+                echo 'falha ao inserir o cliente';
+            }
+
+        }else if(isset($_POST['Atualizar'])){
+            $this->clienteView->Atualizar();
+
+        }else if(isset($_POST['Consultar'])){
+            $this->clienteView->Consultar();
+
+        }else if(isset($_POST['Excluir'])){
+            $this->clienteView->Excluir();
+
+        }else{
+            $this->clienteView->Listar($this->cliente);
         }
-        //$this->view->exibirFormularioCliente();
+        
     }
 }
 
