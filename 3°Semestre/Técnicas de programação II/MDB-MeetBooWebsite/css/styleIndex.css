@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Century Gothic", sans-serif;
+    scroll-behavior: smooth;
+    background: #ffffff;
+}
+
+a
+{
+    text-decoration: none;
+    color: #55309b;
+    font-weight: bold;
+}
+
+.principal {
+    display: flex;
+    width: 100%;
+	justify-content: space-around;
+	flex-wrap: wrap;
+    padding-top: 30px;
+}
+
+.imgContainer {
+    position: relative;
+    left: 130px;
+    top: 80px;
+}
+
+.container
+{
+    position: relative;
+    right: 130px;
+    top: 60px;
+    width: 330px;
+    height: 440px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    box-shadow: 0 0 20px #E1E1E1;
+
+}
+
+.container img
+{
+    height: 70px;
+    width: 270px;
+}
+
+form
+{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form a
+{
+    font-size: 12px; 
+    width: 220px;
+    text-align: right;
+}
+
+form input
+{
+    width: 68%;
+    height: 22px;
+    padding: 8px;
+    border: none;
+    margin-top: 30px;
+    box-shadow: 0 0 20px #E1E1E1;
+    border-radius: 4px;
+    outline: none;
+    font-family: "Century Gothic", sans-serif;
+}
+
+.btn-login
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 160px;
+    height: 36px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background: #55309b;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.paragra
+{
+    margin-bottom: -10px;
+}
+
+footer
+{
+    width: 60%;
+    margin-top: 100px;
+    align-items: center;
+}
+
+footer p
+{
+    position: relative;
+    color: gray;
+    margin-top: 20px;
+    text-align: center;
+}
+
+ul
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+ul li
+{
+    list-style: none;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+@media (max-width: 1080px)
+{
+    .principal{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imgContainer{
+        display: none;
+    }
+
+    .container{
+        right: 0;
+        top: 0;
+    }
+}

@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Century Gothic", sans-serif;
+    scroll-behavior: smooth;
+    background: #ffffff;
+}
+
+a
+{
+    text-decoration: none;
+    color: #55309b;
+    font-weight: bold;
+}
+
+.principal 
+{
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-container
+{
+    position: absolute;
+    top: 500px;
+}
+
+.container
+{
+    width: 400px;
+    height: 520px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    box-shadow: 0 0 20px #E1E1E1;
+
+}
+
+.container img
+{
+    height: 70px;
+    width: 280px;
+}
+
+form
+{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input
+{
+    width: 68%;
+    height: 22px;
+    padding: 8px;
+    border: none;
+    margin-top: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 20px #E1E1E1;
+    outline: none;
+    font-family: "Century Gothic", sans-serif;
+}
+
+.btn-cadastro
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 160px;
+    height: 36px;
+    margin-top: 28px;
+    border: none;
+    border-radius: 5px;
+    background: #55309b;
+    box-shadow: 0 0 20px #E1E1E1;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.paragra
+{
+    margin-bottom: -10px;
+}
+
+footer
+{
+    width: 60%;
+    margin-top: 20px;
+    align-items: center;
+}
+
+footer p
+{
+    position: relative;
+    color: gray;
+    margin-top: 20px;
+    text-align: center;
+}
+
+ul
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+ul li
+{
+    list-style: none;
+    font-weight: 400;
+    font-size: 18px;
+}
