@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Star</title>
+</head>
+<body>
+    <form th:action="@{/pesquisar}" method="get">
+        <input type="text" id="filtroNome" name="filtroNome" placeholder="Procure aqui" th:value="${filtroNome}">
+        <button type="submit">Filtrar</button>
+    </form> 
+
+    <h1>Listagem de Brinquedos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>ID</th>
+                <th>Categoria</th>
+                <th>Preço</th>
+                <th>Qntd</th>
+                <th>Descrição</th>
+                <!-- Adicione mais colunas conforme necessário -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterar sobre a lista de alunos e exibir cada aluno -->
+            <tr th:each="brinquedo : ${brinquedos}">
+                <td th:text="${brinquedo.nome}"></td>
+                <td th:text="${brinquedo.id}"></td>
+                <td th:text="${brinquedo.categoria}"></td>
+                <td th:text="${brinquedo.preco}"></td>
+                <td th:text="${brinquedo.qntd}"></td>
+                <td th:text="${brinquedo.descricao}"></td>
+                <!-- Adicione mais colunas conforme necessário -->
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
