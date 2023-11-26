@@ -1,6 +1,6 @@
 <?php
 
-
+use MongoDB\BSON\ObjectID;
 class Postagem{
 
     private $idUsuario;
@@ -61,49 +61,67 @@ class Postagem{
 
     public function postar($postagem){
 
-        /*$post = new Post();
-        $teste = $post->getDescPost();
-        echo($teste);*/
-        $conexao = Conexao::pegarConexao();
-
+        $conexao = ConexaoMDB::pegarConexao();
+        $banco = $conexao->selectDatabase('MeetBooMDB');
+        $colecaoUsuario = $banco->selectCollection('tbUsuario');
+        $colecaoPost = $banco->selectCollection('tbPost');
 
         //Pegar nome
 
-        $stmtU = $conexao->query("SELECT idUsuario FROM tbUsuario WHERE nomeUsuario = '" . $_SESSION['User'] . "'");
-        $resultado = $stmtU->fetch();
-        $postagem->setIdUsuario($resultado['idUsuario']);
+        $usuario = $colecaoUsuario->findOne(['nomeUsuario' => $_SESSION['User']]);
+        $postagem->setIdUsuario($usuario['_id']);
 
-        
-        // echo "<pre>";
-        // var_dump($postagem);
-        // echo "</pre>";
         
         
         //Postagem
+        $documentoPostagem = [
+            'idUsuario' => $postagem->getIdUsuario(),
+            'descPost' => $postagem->getDescPost(),
+            'tituloPost' => $postagem->getTituloPost(),
+            'generoPost' => $postagem->getGeneroPost(),
+            'caminhoImagem' => $postagem->getCaminhoImagem(),
+            'nomeImagem' => $postagem->getNomeImagem(),
+        ];
 
-        $stmt = $conexao->prepare(" INSERT INTO tbPost (idUsuario, descPost, tituloPost, generoPost, caminhoImagem, nomeImagem)
-                                    VALUES (?, ?, ?, ?, ?, ?) ");
-
-        $stmt->bindValue(1, $postagem->getIdUsuario());
-        $stmt->bindValue(2, $postagem->getDescPost());
-        $stmt->bindValue(3, $postagem->getTituloPost());
-        $stmt->bindValue(4, $postagem->getGeneroPost());
-        $stmt->bindValue(5, $postagem->getCaminhoImagem());
-        $stmt->bindValue(6, $postagem->getNomeImagem());
-        $stmt->execute();
+        $colecaoPost->insertOne($documentoPostagem);
 
         header("Location: home.php");
-       
 
     }
 
     public function listar(){
-        $conexao = Conexao::pegarConexao();
-        $querySelect = "SELECT nomeUsuario, descPost, tituloPost, generoPost, caminhoImagem FROM tbPost
-                         INNER JOIN tbUsuario ON tbPost.idUsuario = tbUsuario.idUsuario";
-        $resultado = $conexao->query($querySelect);
-        $listaPost = $resultado->fetchAll();
-        return $listaPost;
+        $conexao = ConexaoMDB::pegarConexao();
+        $banco = $conexao->selectDatabase('MeetBooMDB');
+        $colecaoUsuario = $banco->selectCollection('tbUsuario');
+        $colecaoPost = $banco->selectCollection('tbPost');
+
+        $pipeline =[
+            [
+                '$lookup' => [
+                    'from' => 'tbUsuario',
+                    'localField' => 'idUsuario',
+                    'foreignField' => '_id',
+                    'as' => 'usuario',
+                ],
+            ],
+
+            [
+                '$unwind' => '$usuario',
+            ],
+
+            [
+                '$project' => [
+                    'nomeUsuario' => '$usuario.nomeUsuario',
+                    'descPost' => '$descPost',
+                    'tituloPost' => '$tituloPost',
+                    'generoPost' => '$generoPost',
+                    'caminhoImagem' => '$caminhoImagem',
+                ],
+            ],
+        ];
+
+        $resultados = $colecaoPost->aggregate($pipeline);
+        return iterator_to_array($resultados);
     }
 
 

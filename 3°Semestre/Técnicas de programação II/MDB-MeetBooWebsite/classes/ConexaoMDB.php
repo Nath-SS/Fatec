@@ -1,16 +1,14 @@
 <?php
 
-//phpinfo();
+session_start();
 
-$url = "mongodb://localhost:27017";
-$client = new MongoDB\Client($url);
+class ConexaoMDB{
 
-if($client){
-    return 'Funcionou';
-}else{
-    return 'Deu ruim';
+    public static function pegarConexao(){
+        $url = "mongodb://localhost:27017";
+        $client = new MongoDB\Client($url);
+        return $client;
+    }
 }
-
-
  
 ?>

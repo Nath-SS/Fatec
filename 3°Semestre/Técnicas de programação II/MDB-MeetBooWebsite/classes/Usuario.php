@@ -44,40 +44,31 @@ class Usuario{
 
 
     public function cadastrar($usuario){
-        $conexao = Conexao::pegarConexao();
+        $conexao = ConexaoMDB::pegarConexao();
+        $banco = $conexao->selectDatabase('MeetBooMDB');
+        $colecao = $banco->selectCollection('tbUsuario');
         
         //validação
 
         $nomeUsuario = $usuario->getNomeUsuario();
         $emailUsuario = $usuario->getEmailUsuario();
-
-
-        $stmtL = $conexao->prepare("SELECT * FROM tbUsuario WHERE nomeUsuario = ?");
-        $stmtE = $conexao->prepare("SELECT * FROM tbUsuario WHERE emailUsuario = ? ");
         
+        $resultadoNome = $colecao->findOne(['nomeUsuario' => $nomeUsuario]);
+        $resultadoEmail = $colecao->findOne(['emailUsuario' => $emailUsuario]);
 
-        $stmtL->bindParam(1, $nomeUsuario);
-        $stmtL->execute();
-        $stmtE->bindParam(1, $emailUsuario);
-        $stmtE->execute();
-
-
-
-        if($stmtL->rowCount() > 0 || $stmtE->rowCount() > 0){            
+        if($resultadoNome || $resultadoEmail){
             $_SESSION['TryAgain'] = "<script type='text/javascript'>alert('Usuario ou Email ja existentes, por favor utilize um diferente.');</script>";
             header("Location: cadastro.php");
-
         }else{
-
         
         //cadastro
-            $stmt = $conexao->prepare("INSERT INTO tbUsuario (nomeUsuario, emailUsuario, senhaUsuario)
-                                      VALUES (?, ?, ?) ");
+            $usuarioDocument = [
+                'nomeUsuario' => $usuario->getNomeUsuario(),
+                'emailUsuario' => $usuario->getEmailUsuario(),
+                'senhaUsuario' => $usuario->getSenhaUsuario()
+            ];
 
-            $stmt->bindParam(1, $usuario->getNomeUsuario());
-            $stmt->bindParam(2, $usuario->getEmailUsuario());
-            $stmt->bindParam(3, $usuario->getSenhaUsuario());
-            $stmt->execute();
+            $colecao->insertOne($usuarioDocument);
 
             $_SESSION['Sucess'] = "<script type='text/javascript'>alert('Cadastro realizado com sucesso!');</script>";
             header("Location: index.php");
@@ -86,22 +77,21 @@ class Usuario{
     }
 
     public function logar($login, $senha){
-        $conexao = Conexao::pegarConexao();
+        $conexao = ConexaoMDB::pegarConexao();
+        $banco = $conexao->selectDatabase('MeetBooMDB');
+        $colecao = $banco->selectCollection('tbUsuario');
 
-        $stmt = $conexao->prepare("SELECT * FROM tbUsuario WHERE emailUsuario = ? and senhaUsuario = ?");
+        $usuario = $colecao->findOne(['emailUsuario' => $login]);
 
-
-        $stmt->bindParam(1, $login);
-        $stmt->bindParam(2, $senha);
-        $stmt->execute();
-
-        if($stmt->rowCount() > 0){
-            $dado = $stmt->fetch();
-
-            $_SESSION['User'] = $dado['nomeUsuario'];
-
-            return true;
+        if (!empty($usuario)) {
+            // Verificar a senha usando password_verify
+            if (password_verify($senha, $usuario['senhaUsuario'])) {
+                // Senha válida, armazene na sessão ou tome outras medidas necessárias
+                $_SESSION['User'] = $usuario['nomeUsuario'];
+                return true;
+            }
         }else{
+        // Usuário não encontrado ou senha inválida
             return false;
         }
     }
