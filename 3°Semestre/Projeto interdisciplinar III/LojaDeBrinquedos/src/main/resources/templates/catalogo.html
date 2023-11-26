@@ -4,13 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css" id="style">
+    <link rel="icon" type="image/x-icon" href="../static/images/FantasyStarIcon.png">
     <title>Fantasy Star</title>
 </head>
 <body>
-    <form th:action="@{/pesquisar}" method="get">
-        <input type="text" id="filtroNome" name="filtroNome" placeholder="Procure aqui" th:value="${filtroNome}">
-        <button type="submit">Filtrar</button>
-    </form> 
+    <header>
+        <a href="index.html"><img src="../static/images/FantasyStarLogo.png"</a>
+        <form th:action="@{/pesquisar}" method="get">
+            <input type="text" id="filtroNome" name="filtroNome" placeholder="Procure aqui" th:value="${filtroNome}">
+            <button type="submit">Pesquisar</button>
+        </form>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="catalogo.html">Catalogo de Brinquedos</a></li>
+            <li><a href="administracao.html">Administração</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="sobre.html">Sobre a equipe</a></li>
+
+            <button id="modoEscuroBtn" onclick="modoEscuro()">Modo escuro</button>
+        </ul>
+    </header>  
 
     <h2 th:text="'Filtrando por: ' + ${filtroNome}"></h2>
     <table>
@@ -38,5 +52,8 @@
             </tr>
         </tbody>
     </table>
+
+    <script type="text/javascript" src="../static/js/main.js"></script>
+    <script>aplicarModoEscuro()</script>
 </body>
 </html>

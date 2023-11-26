@@ -1,4 +1,4 @@
-package com.lojabrinquedos.fantasystar.controller;
+package com.lojabrinquedos.fantasystar.controller.api;
 
 import java.util.List;
 
