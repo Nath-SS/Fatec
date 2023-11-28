@@ -11,6 +11,8 @@ public interface BrinquedoRepository extends MongoRepository<Brinquedo, String> 
 
     List<Brinquedo> findByNomeContains(String nome);
 
+    List<Brinquedo> findByNomeContainsIgnoreCase(String filtroNome);
+
 
 
 }

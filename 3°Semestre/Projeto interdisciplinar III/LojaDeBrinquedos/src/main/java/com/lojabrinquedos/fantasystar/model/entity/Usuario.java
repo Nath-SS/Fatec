@@ -13,19 +13,20 @@ public class Usuario {
 	private String senha;
 	private String email;
 	private String endereco;
-	
+	private boolean adm;
+
 	public Usuario() {
 		// TODO Auto-generated method stub
 
 	}
-
-	public Usuario(String id, String nome, String senha, String email, String endereco) {
-		super();
+	
+	public Usuario(String id, String nome, String senha, String email, String endereco, boolean adm) {
 		this.id = id;
 		this.nome = nome;
 		this.senha = senha;
 		this.email = email;
 		this.endereco = endereco;
+		this.adm = adm;
 	}
 
 	public String getId() {
@@ -67,6 +68,18 @@ public class Usuario {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
+	public boolean isAdm() {
+		return adm;
+	}
+
+	public void setAdm(boolean adm) {
+		this.adm = adm;
+	}
+
+	
+
+
 	
 	
 

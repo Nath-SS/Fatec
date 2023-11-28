@@ -16,7 +16,7 @@ import com.lojabrinquedos.fantasystar.model.repository.BrinquedoRepository;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/brinquedos")
 public class BrinquedoWebController {
 
 	
@@ -24,28 +24,19 @@ public class BrinquedoWebController {
 	private BrinquedoRepository brinquedoRepository;
 	
     //-------------testados-------------//
-    //--------Listar todos os brinquedos
-	@GetMapping 
-	public String listAll(Model model) {
-		List<Brinquedo> brinquedos = brinquedoRepository.findAll();
-		model.addAttribute("brinquedos", brinquedos);
-		return "index";
-	}
-
-
-    //--------Listar os brinquedos por um nome especifico
-	@GetMapping("pesquisar") 
-	public String listByName(Model model, @RequestParam String filtroNome) {
-        List<Brinquedo> brinquedos = brinquedoRepository.findByNomeContains(filtroNome);
+	//--------Listar os brinquedos por um nome especifico
+	@GetMapping("/pesquisar") 
+	public String searchByName(Model model, @RequestParam String filtroNome) {
+        List<Brinquedo> brinquedos = brinquedoRepository.findByNomeContainsIgnoreCase(filtroNome);
         model.addAttribute("brinquedos", brinquedos);
         model.addAttribute("filtroNome", filtroNome);
-        return "catalogo";
+        return "redirect:/catalogo";
 	}
 
     //-------------pra testar-------------//
 	
     //--------Redirecionar para o form de brinquedo
-	@GetMapping("novo_brinquedo")
+	@GetMapping("/novo_brinquedo")
 	public String newBrinquedo(Model model) {
 		
 		model
@@ -56,24 +47,24 @@ public class BrinquedoWebController {
 	}
 
     //--------Adicionar novo brinquedo e retornar para a listagem
-	@PostMapping("adicionar_brinquedo")
-	public String saveAluno(Brinquedo brinquedo) {
+	@PostMapping("/adicionar_brinquedo")
+	public String saveBrinquedo(Brinquedo brinquedo) {
 		brinquedoRepository.save(brinquedo);
-		return "redirect:/";
+		return "redirect:/catalogo";
 	}
 	
     //--------Deletar por id e retornar para listagem
-	@GetMapping("deletar_brinquedo")
-	public String deleteAluno(@RequestParam String id) {
+	@GetMapping("/deletar_brinquedo")
+	public String deleteBrinquedo(@RequestParam String id) {
 		Optional<Brinquedo> brinquedoId = brinquedoRepository.findById(id);
 		if (brinquedoId.isPresent()) 
 			brinquedoRepository.deleteById(id);
 		
-		return "redirect:/";
+		return "redirect:/catalogo";
 	}
 	
-	@GetMapping("editar_brinquedo")
-	public String editAluno(Model model, @RequestParam String id) {
+	@GetMapping("/editar_brinquedo")
+	public String editBrinquedo(Model model, @RequestParam String id) {
 		
 		Brinquedo aluno = brinquedoRepository.findById(id).get();
 		

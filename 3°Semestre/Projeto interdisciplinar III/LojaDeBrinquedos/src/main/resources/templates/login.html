@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" id="style">
+    <link rel="icon" type="image/x-icon" href="/images/FantasyStarIcon.png">
+    <title>Fantasy Star</title>
+</head>
+<body>
+    <header>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/catalogo}">Catalogo de Brinquedos</a></li>
+            <li><a th:href="@{/administração}">Administração</a></li>
+            <li><a th:href="${logado} ? @{/user/perfil} : @{/user/login}">
+                <span th:text="${logado} ? 'Perfil' : 'Login'"></span>
+            </a></li>
+            <li><a th:href="@{/sobre}">Sobre a equipe</a></li>
+
+            <button id="modoEscuroBtn" onclick="modoEscuro()">Modo escuro</button>
+        </ul>
+    </header> 
+    <h3>Login</h3>
+    <form th:action="@{/user/logar}" method="post">
+        <table border="1">
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" size=40 /></td>
+            </tr>
+            <tr>
+                <td>Senha</td>
+                <td><input type="password" name="senha" size=40 /></td>
+            <tr>
+                <td colspan="2"><input type="submit" value="Enviar" /> <a th:href="@{/}">voltar</a></td>
+            </tr>
+    </form>
+    </table>
+    
+
+    <script th:if="${!#strings.isEmpty(mensagemErro)}" th:inline="javascript">
+            /*<![CDATA[*/
+            alert([[$,{mensagemErro}]]);
+            /*]]>*/
+    </script>
+    </body>
+</html>
