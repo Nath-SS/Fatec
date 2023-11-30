@@ -50,6 +50,7 @@ class ClienteView {
                     </ul>
                 </div>
             </div>
+            foi mal eu esqueci de adicionar algo aqui
         </body>
         </html>';
     }

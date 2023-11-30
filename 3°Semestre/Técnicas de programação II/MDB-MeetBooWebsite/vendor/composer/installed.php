@@ -35,7 +35,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../jean85/pretty-package-versions',
             'aliases' => array(),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'mongodb/mongodb' => array(
             'pretty_version' => '1.12.0',
@@ -44,7 +44,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../mongodb/mongodb',
             'aliases' => array(),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'myclabs/deep-copy' => array(
             'pretty_version' => '1.11.1',
@@ -287,7 +287,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-php80',
             'aliases' => array(),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'theseer/tokenizer' => array(
             'pretty_version' => '1.2.1',
