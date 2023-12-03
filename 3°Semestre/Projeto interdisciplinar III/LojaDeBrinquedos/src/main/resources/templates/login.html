@@ -13,10 +13,16 @@
         <ul>
             <li><a th:href="@{/}">Home</a></li>
             <li><a th:href="@{/catalogo}">Catalogo de Brinquedos</a></li>
-            <li><a th:href="@{/administração}">Administração</a></li>
-            <li><a th:href="${logado} ? @{/user/perfil} : @{/user/login}">
-                <span th:text="${logado} ? 'Perfil' : 'Login'"></span>
-            </a></li>
+
+            <span th:remove="tag" sec:authorize="hasRole('ADM')">
+                <li><a th:href="@{/administração}">Administração</a></li>
+            </span>
+            <span th:remove="tag" sec:authorize="hasRole('USER')">
+                <li><a th:href="@{/user/perfil}">Perfil</a></li>
+            </span>
+            <span th:remove="tag" sec:authorize="!isAuthenticated()">
+                <li><a th:href="@{/user/login}">Login</a></li>
+            </span>
             <li><a th:href="@{/sobre}">Sobre a equipe</a></li>
 
             <button id="modoEscuroBtn" onclick="modoEscuro()">Modo escuro</button>

@@ -9,19 +9,24 @@ public class Brinquedo {
 	@Id
 	private String id;
 
+	private String caminhoImagem;
+	private String nomeImagem;
+
 	private String nome;
 	private String categoria;
 	private double preco;
 	private int qntd;
 	private String descricao;
 
-	public Brinquedo(String id, String nome, String categoria, double preco, int qntd, String descricao) {
+	public Brinquedo(String id, String nome, String categoria, double preco, int qntd, String descricao, String caminhoImagem, String nomeImagem) {
 		this.id = id;
 		this.nome = nome;
 		this.categoria = categoria;
 		this.preco = preco;
 		this.qntd = qntd;
 		this.descricao = descricao;
+		this.caminhoImagem = caminhoImagem;
+		this.nomeImagem = nomeImagem;
 	}
 	
 	public Brinquedo() {
@@ -73,6 +78,22 @@ public class Brinquedo {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getCaminhoImagem() {
+		return caminhoImagem;
+	}
+
+	public void setCaminhoImagem(String caminhoImagem) {
+		this.caminhoImagem = caminhoImagem;
+	}
+
+	public String getNomeImagem() {
+		return nomeImagem;
+	}
+
+	public void setNomeImagem(String nomeImagem) {
+		this.nomeImagem = nomeImagem;
 	}
 	
 	

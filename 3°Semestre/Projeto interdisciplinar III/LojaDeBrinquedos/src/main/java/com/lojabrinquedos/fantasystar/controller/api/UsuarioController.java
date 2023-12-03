@@ -40,11 +40,11 @@ public class UsuarioController {
         return usuarios;
     }
 
-    @GetMapping("/usuario/{email}")
-    public List<Usuario> getByEmail(@PathVariable String email){
-        List<Usuario> usuario = usuarioRepository.findByEmail(email);
-        return usuario;
-    }
+    // @GetMapping("/usuario/{email}")
+    // public List<Usuario> getByEmail(@PathVariable String email){
+    //     List<Usuario> usuario = usuarioRepository.findByEmail(email);
+    //     return usuario;
+    // }
 
     @PostMapping("/cadastrar")
     public Usuario insert(@RequestBody Usuario usuario){

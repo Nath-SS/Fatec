@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lojabrinquedos.fantasystar.model.entity.Brinquedo;
-import com.lojabrinquedos.fantasystar.model.entity.Usuario;
 import com.lojabrinquedos.fantasystar.model.repository.BrinquedoRepository;
 
-import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/")
@@ -38,18 +37,8 @@ public class WebController {
 	}
     
     @GetMapping("administração")
-    public String admPage(Model model, HttpSession session){
-        Usuario user = (Usuario) session.getAttribute("usuario");
-        if(user != null){
-            if(user.isAdm()){
-                return "administracao";
-            }else{
-                model.addAttribute("semAcesso", "você não possui acesso para acessar essa página");
-                return "redirect:/";
-            }
-        }else{
-            return "redirect:/user/login";
-        }
+    public String admPage(){
+        return "administracao";
     }
 
     @GetMapping("sobre")
