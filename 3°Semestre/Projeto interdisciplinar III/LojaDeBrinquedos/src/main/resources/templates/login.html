@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,7 +40,7 @@
                 <td>Senha</td>
                 <td><input type="password" name="senha" size=40 /></td>
             <tr>
-                <td colspan="2"><input type="submit" value="Enviar" /> <a th:href="@{/}">voltar</a></td>
+                <td colspan="2"><input type="submit" value="Enviar" /> <a th:href="@{/}">voltar</a> <a th:href="@{/user/signin}"></a></td>
             </tr>
     </form>
     </table>

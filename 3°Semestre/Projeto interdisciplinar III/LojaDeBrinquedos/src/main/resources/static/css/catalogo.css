@@ -1,0 +1,143 @@
+/* Titulo seção1 */
+
+.catalogo{
+    background-color: #F0EEE8;
+    
+}
+
+h2{
+font-family: Nunito ;
+font: size 50px;
+font-variant: initial;
+text-align: center;
+color: #FFB414;
+padding-top: 10px;
+
+}
+
+.titulo3{
+    font-family: Nunito;
+    font-size: 45px;
+    padding-top: 32px;
+    font-weight: bolder;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.retangulo{
+    width: 80px;
+    height: 13px;
+    align-items: center;
+    margin: auto;
+    border-radius: 5px;
+    background-color: #F89705;
+    margin-bottom: 60px;
+}
+
+/* Cards */
+
+article.card{
+    width: 300px;
+    max-width: 390px;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 25px;
+    align-items: center;
+    cursor: pointer;
+    border: 20px;
+    background-color: #DEDCDC;
+    margin-bottom: 60px;
+    
+}
+
+.card{
+    box-shadow: 0px 6px 25px black;
+    
+}
+.card img{
+    width: 60%;
+    align-items: center;
+}
+.card h3{
+    margin: 1em 0;
+    font-size: 1.3em;
+}
+.card p{
+    font-size: 15px;
+}
+
+/* h3 com o preco */
+
+.produto{
+    font-family: Nunito;
+    font-weight: bold;
+    font-size:36px;
+    color: #E50432;
+    padding-bottom: -10px;
+}
+
+.preco{
+    font-family: Nunito, semi-bold;
+    color: black;
+    font-size:330px;
+    font-weight: bold;
+}
+
+/* descricao do produto p */
+
+.descricao{
+    font-family: Barlow;
+    text-align: center;
+}
+
+
+
+.container{
+    width: 80%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    /* background-color: blueviolet; */
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 80px;
+    border-color: #520C30;
+  ;
+    
+}
+.container-wrap{
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+   
+}
+
+
+.vermais{
+    text-decoration: none;
+    font-family: Barlow;
+    Height: 50px;
+    width: 260px;
+    border-radius: 20px;
+    background-color: #F48604;
+    cursor: pointer;
+    box-shadow: 3px 3px 10px #F48604;
+    border: none;
+    color: white;
+    
+    
+}
+
+.vermais button{
+    box-shadow:blur8, x0,y0 #263BFF;
+    background-color: #263BFF;
+}
+
+ /* Link de vermais - expansão para ver detalhes */
+
+ .detalhes {
+    font-family: Nunito;
+    font-size: 15px;
+    color: #C4C4C4;
+    margin-top: 10px;
+ }

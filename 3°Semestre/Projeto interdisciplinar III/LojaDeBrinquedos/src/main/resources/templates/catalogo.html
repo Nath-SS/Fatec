@@ -1,66 +1,156 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css" id="style">
-    <link rel="icon" type="image/x-icon" href="/images/FantasyStarIcon.png">
-    <title>Fantasy Star</title>
-</head>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/catalogo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+    </style>
 <body>
-    <header>
-        <a th:href="@{/}"><img src="/images/FantasyStarLogo.png"</a> 
-        <form th:action="@{/brinquedos/pesquisar}" method="get">
-            <input type="text" id="filtroNome" name="filtroNome" placeholder="Procure aqui" th:value="${filtroNome}">
-            <button type="submit">Pesquisar</button>
-        </form>
-        <ul>
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/catalogo}">Catalogo de Brinquedos</a></li>
+    <header class="topo">
+        <a class="logo-brinkids" th:href="@{/}"><img src="/images/BrinKIDS_Logo.png"></a>
+        <div id="divBusca"> 
+            <form th:action="@{/brinquedos/pesquisar}" method="get">
+                <input type="text" id="txtBusca" name="filtroNome" placeholder="Procure aqui" th:value="${filtroNome}">
+                <button id="btnBusca" type="submit">Pesquisar</button>
+            </form>
+        </div>
+        <div class="usuario"><a href="#openModal1"> <img src="/images/userIcon.png"></a></div>
+        <nav>
+            <img class="natal" src="/images/IconNatal.png">
+            <ul>
+                <li class="Home"><a th:href="@{/}">Home</a></li>
 
-            <span th:remove="tag" sec:authorize="hasRole('ADM')">
-                <li><a th:href="@{/administração}">Administração</a></li>
-            </span>
-            <span th:remove="tag" sec:authorize="hasRole('USER')">
-                <li><a th:href="@{/user/perfil}">Perfil</a></li>
-            </span>
-            <span th:remove="tag" sec:authorize="!isAuthenticated()">
-                <li><a th:href="@{/user/login}">Login</a></li>
-            </span>
-            <li><a th:href="@{/sobre}">Sobre a equipe</a></li>
+                <li class="Brinquedos">
+                    <a th:href="@{/catalogo}" class="btn-btn-secondary-dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brinquedos</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" th:href="@{/catalogo}">Todos</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='0 a 2')}">Brinquedos 0 a 32 meses</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='3 a 7')}">Brinquedos +3</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='8 a 12')}">Brinquedos +7</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='Montar')}">Brinquedos de Montar</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='Livros')}">Livros Infantis</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='Jogos')}">Jogos Infantis</a>
+                    </div>
+                </li> 
 
-            <button id="modoEscuroBtn" onclick="modoEscuro()">Modo escuro</button>
-        </ul>
-    </header> 
+                <!-- <span th:remove="tag" sec:authorize="#authentication.getAuthorities().contains('ROLE_ADM')" th:cache="false"> -->
+                <li class="Admin"><a th:href="@{/administração}">Administração</a></li>
+                <!-- </span>
+                <span th:remove="tag" sec:authorize="#authentication.getAuthorities().contains('ROLE_USER')" th:cache="false">
+                    <li><a th:href="@{/user/perfil/${authentication.name}}">Perfil</a></li>
+                </span> -->
+                <li class="Sobre"><a href="#sec-sobre">Sobre</a></li>
+                <li class="Trocas"><a href="#rodape">Contatos</a></li>
 
-    <h2 th:text="${filtroNome} ? 'Filtrando por: ' + ${filtroNome} : 'Filtrando por:'"></h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>ID</th>
-                <th>Categoria</th>
-                <th>Preço</th>
-                <th>Qntd</th>
-                <th>Descrição</th>
-                <!-- Adicione mais colunas conforme necessário -->
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Iterar sobre a lista de alunos e exibir cada aluno -->
-            <tr th:each="brinquedo : ${brinquedos}">
-                <td th:text="${brinquedo.nome}"></td>
-                <td th:text="${brinquedo.id}"></td>
-                <td th:text="${brinquedo.categoria}"></td>
-                <td th:text="${brinquedo.preco}"></td>
-                <td th:text="${brinquedo.qntd}"></td>
-                <td th:text="${brinquedo.descricao}"></td>
-                <!-- Adicione mais colunas conforme necessário -->
-            </tr>
-        </tbody>
-    </table>
+                <!-- <button id="modoEscuroBtn" onclick="modoEscuro()">Modo escuro</button> -->
+            </ul>
+        </nav>
+    </header>
+    <section class="catalogo">
+        <h2 class="titulo3" th:text="${categoria} ? 'Categoria selecionada: ' + ${categoria} : 'Categoria Selecionada: Todos'">Todos os Brinquedos</h2>
+        <div class="retangulo"></div>
+        <div class="container container-wrap">
 
+            <!-- CARDS -->
+            <article class="card" th:each="brinquedo : ${brinquedos}" th:if="${brinquedo.categoria} == ${categoria}">
+                <img th:src="${brinquedo.caminhoImagem}">
+                <h3 class="produto" th:text="${brinquedo.nome}"></h3>
+                <b><h3 class="preco" th:text="${brinquedo.preco}">R$ </h3> </b>
+    
+                     <button class="vermais"> Adicionar ao Carrinho</button>
+                     <p class="detalhes"> <a href="#openModal"> Ver Mais</a> </p>
+
+            </article>
+            <article class="card" th:each="brinquedo : ${brinquedos}" th:unless="${brinquedo.categoria} == ${categoria}">
+                <img th:src="${brinquedo.caminhoImagem}">
+                <h3 class="produto" th:text="${brinquedo.nome}"></h3>
+                <b><h3 class="preco" th:text="${brinquedo.preco}">R$ </h3> </b>
+    
+                     <button class="vermais"> Adicionar ao Carrinho</button>
+                     <p class="detalhes"> <a href="#openModal"> Ver Mais</a> </p>
+
+            </article>
+        </div>
+    </section>
+    <section class="modal-container-wrap"> 
+        <div class="container-modal">
+    <div id="openModal1" class="modalDialog">
+        
+        <div>	<a href="#close" title="Close" class="close">X</a>
+            <form action="/pagina-processa-dados-do-form" method="post">
+                <section class="login">
+                <h2>Sua Conta</h2>
+                <div>
+                  <label for="nome">Nome:</label> <br>
+                  <input type="text" id="nome" name="usuario_nome" />
+                </div>
+                <div>
+                  <label for="email">E-mail:</label><br>
+                  <input type="email" id="email" name="usuario_email" />
+                </div>
+                
+                <div>
+
+              
+                <div class="button">
+                  <button class="comprar-modal" type="submit">Entrar</button>
+                </div>
+                <div>
+                    <h3>Ainda não tem conta , <a href="#">Clique Aqui e Cadastre-se ! </a></h3>
+                </div>
+              </form>
+            </section>
+            
+            </div>
+        </div>
+        </div>
+    </section>
+    <footer class="rodape" id="rodape">
+        <div>
+            <img class="logo-rodape" src="/images/BrinKIDS_LogoF.png">
+        </div>
+        <div class="paginas-rodape">
+            <h3>Menu</h3>
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/catalogo}">Catálogo</a></li>
+                <li><a th:href="@{administrção}">Administração</a></li>
+                <li><a href="#sec-sobre"> Sobre</a></li>
+                <li><a href="#openModal">Cadastre-se</a></li>
+            </ul>
+        </div>
+        <div class="links-rodape">
+            <h3>Nossas Redes Sociais</h3>
+            <ul>
+                <li><img class="facebook" src="/images/facebook.png"><a href="#"> Facebook</a></li>
+                <li><img class="facebook" src="/images/instagram.png"><a href="#"> Instagram</a></li>
+                <li><img class="facebook" src="/images/envelope.png"><a href="#"> suporte@brinkids.com</a></li>
+            </ul>
+            <h4>SAC 0800 330 560</h4>
+            <h4>Telefone : 11967638494</h4>
+        </div>
+        <div class="formas-pagamento">
+            <h3>Formas de Pagamento</h3>
+            <img class="pagamento" src="/images/pagamento.png">
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
     <script type="text/javascript" src="/js/main.js"></script>
     <script>aplicarModoEscuro()</script>
 </body>

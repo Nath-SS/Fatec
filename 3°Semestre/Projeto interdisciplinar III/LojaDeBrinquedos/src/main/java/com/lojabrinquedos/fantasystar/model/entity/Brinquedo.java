@@ -17,8 +17,9 @@ public class Brinquedo {
 	private double preco;
 	private int qntd;
 	private String descricao;
+	private boolean destaque;
 
-	public Brinquedo(String id, String nome, String categoria, double preco, int qntd, String descricao, String caminhoImagem, String nomeImagem) {
+	public Brinquedo(String id, String nome, String categoria, double preco, int qntd, String descricao, String caminhoImagem, String nomeImagem, boolean destaque) {
 		this.id = id;
 		this.nome = nome;
 		this.categoria = categoria;
@@ -27,6 +28,7 @@ public class Brinquedo {
 		this.descricao = descricao;
 		this.caminhoImagem = caminhoImagem;
 		this.nomeImagem = nomeImagem;
+		this.destaque = destaque;
 	}
 	
 	public Brinquedo() {
@@ -96,6 +98,13 @@ public class Brinquedo {
 		this.nomeImagem = nomeImagem;
 	}
 	
+	public boolean isDestaque() {
+		return destaque;
+	}
+
+	public void setDestaque(boolean destaque) {
+		this.destaque = destaque;
+	}
 	
 	
 	

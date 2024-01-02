@@ -1,3 +1,99 @@
-somos muito foda
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/catalogo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+    </style>
+<body>
+    <header class="topo">
+        <a class="logo-brinkids" th:href="@{/}"><img src="/images/BrinKIDS_Logo.png"></a>
+        <div id="divBusca"> 
+            <form th:action="@{/brinquedos/pesquisar}" method="get">
+                <input type="text" id="txtBusca" name="filtroNome" placeholder="Procure aqui" th:value="${filtroNome}">
+                <button id="btnBusca" type="submit">Pesquisar</button>
+            </form>
+        </div>
+        <div class="usuario"><a href="#openModal1"> <img src="/images/userIcon.png"></a></div>
+        <nav>
+            <img class="natal" src="/images/IconNatal.png">
+            <ul>
+                <li class="Home"><a th:href="@{/}">Home</a></li>
 
-<a th:href="@{/}">voltar</a>
+                <li class="Brinquedos">
+                    <a th:href="@{/catalogo}" class="btn-btn-secondary-dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brinquedos</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='0 a 2')}">Brinquedos 0 a 32 meses</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='3 a 7')}">Brinquedos +3</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='8 a 12')}">Brinquedos +7</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='Montar')}">Brinquedos de Montar</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='Livros')}">Livros Infantis</a>
+                        <a class="dropdown-item" th:href="@{/categorias/pesquisar/{categoria} (categoria='Jogos')}">Jogos Infantis</a>
+                    </div>
+                </li> 
+
+                <!-- <span th:remove="tag" sec:authorize="#authentication.getAuthorities().contains('ROLE_ADM')" th:cache="false"> -->
+                <li class="Admin"><a th:href="@{/administração}">Administração</a></li>
+                <!-- </span>
+                <span th:remove="tag" sec:authorize="#authentication.getAuthorities().contains('ROLE_USER')" th:cache="false">
+                    <li><a th:href="@{/user/perfil/${authentication.name}}">Perfil</a></li>
+                </span> -->
+                <li class="Sobre"><a href="#sec-sobre">Sobre</a></li>
+                <li class="Trocas"><a href="#rodape">Contatos</a></li>
+
+                <!-- <button id="modoEscuroBtn" onclick="modoEscuro()">Modo escuro</button> -->
+            </ul>
+        </nav>
+    </header>
+<form th:action="@{/brinquedos/adicionar_brinquedo}" method="post" th:object="${brinquedo}" enctype="multipart/form-data">
+    <table border="1">
+        <!-- <tr>
+            <td>Imagem</td>
+            <td><input type="file" name="ftFile"></td>
+        </tr> -->
+        <tr>
+            <td>Nome</td>
+            <td><input type="text" name="nome" size="60"></td>
+        </tr>
+        <tr>
+            <td>Categoria</td>
+            <td>
+                <input type="radio" name="categoria" value="0 a 2">0 a 2
+                <input type="radio" name="categoria" value="3 a 7">3 a 7
+                <input type="radio" name="categoria" value="8 a 12">8 a 12
+                <input type="radio" name="categoria" value="Montar">Montar
+                <input type="radio" name="categoria" value="Livros">Livros
+                <input type="radio" name="categoria" value="Jogos">Jogos
+            </td>
+        </tr>
+        <tr>
+            <td>Destaque</td>
+            <td><input type="checkbox" name="destaque"></td>
+        </tr>
+        <tr>
+            <td>Preço</td>
+            <td><input type="text" name="preco" size="60"></td>
+        </tr>
+        <tr>
+            <td>Quantidade</td>
+            <td><input type="number" name="qntd"></td>
+        </tr>
+        <tr>
+            <td>Descrição</td>
+            <td><input type="text" name="descricao" size=60 /></td>
+        <tr>
+            <td colspan="2"><input type="submit" value="Enviar" /> <a th:href="@{/}">voltar</a></td>
+        </tr>
+</form>

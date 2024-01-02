@@ -1,19 +1,19 @@
 package com.lojabrinquedos.fantasystar.controller.web;
 
-import java.io.File;
-import java.io.IOException;
+//import java.io.File;
+//import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
+//import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.web.multipart.MultipartFile;
 
 import com.lojabrinquedos.fantasystar.model.entity.Brinquedo;
 import com.lojabrinquedos.fantasystar.model.repository.BrinquedoRepository;
@@ -34,13 +34,13 @@ public class BrinquedoWebController {
         List<Brinquedo> brinquedos = brinquedoRepository.findByNomeContainsIgnoreCase(filtroNome);
         model.addAttribute("brinquedos", brinquedos);
         model.addAttribute("filtroNome", filtroNome);
-        return "redirect:/catalogo";
+        return "catalogo";
 	}
 
     //-------------pra testar-------------//
 	
     //--------Redirecionar para o form de brinquedo
-	@Secured("ROLE_ADM")
+	//@Secured("ADM")
 	@GetMapping("/novo_brinquedo")
 	public String newBrinquedo(Model model) {
 		
@@ -52,38 +52,43 @@ public class BrinquedoWebController {
 	}
 
     //--------Adicionar novo brinquedo e retornar para a listagem
-	@Secured("ROLE_ADM")
+	//@Secured("ADM")
 	@PostMapping("/adicionar_brinquedo")
-	public String saveBrinquedo(Brinquedo brinquedo, @RequestParam MultipartFile ftFile) {
+	public String saveBrinquedo(Brinquedo brinquedo) {
 		try {
-			//receber imagem
-			String nomeImagem = ftFile.getOriginalFilename();
-			String caminhoImagem = "/image/";
+			// //receber imagem
+			// String nomeImagem = ftFile.getOriginalFilename();
+			// String caminhoImagem = "src/main/resources/static/images/"; // adjust the path as needed
+			// System.out.println("Recebi a imagem");
 
-			//salvar imagem no diretório
-			File arquivo = new File(caminhoImagem + nomeImagem);
-			ftFile.transferTo(arquivo);
+			// //salvar imagem no diretório
+			// File arquivo = new File(caminhoImagem + nomeImagem);
+			// ftFile.transferTo(arquivo);
+			// System.out.println("mandei pro diretório");
 
-			//salvar no objeto
-			brinquedo.setNomeImagem(ftFile.getOriginalFilename());
-			brinquedo.setCaminhoImagem(caminhoImagem + nomeImagem);
+			// //salvar no objeto
+			// brinquedo.setNomeImagem(ftFile.getOriginalFilename());
+			// brinquedo.setCaminhoImagem(caminhoImagem + nomeImagem);
+			// System.out.println("salvei no objeto");
 
 			//salvar no banco
 			brinquedoRepository.save(brinquedo);
+			System.out.println("Salvei no banco");
 			return "redirect:/catalogo";
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 			return "redirect:/catalogo";
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "redirect:/catalogo";
 		}
+		// } catch (IOException e) {
+		// 	e.printStackTrace();
+		// 	return "redirect:/catalogo";
+		// }
 
 		
 	}
 	
     //--------Deletar por id e retornar para listagem
-	@Secured("ROLE_ADM")
+	//@Secured("ADM")
 	@GetMapping("/deletar_brinquedo")
 	public String deleteBrinquedo(@RequestParam String id) {
 		Optional<Brinquedo> brinquedoId = brinquedoRepository.findById(id);
@@ -93,7 +98,7 @@ public class BrinquedoWebController {
 		return "redirect:/catalogo";
 	}
 	
-	@Secured("ROLE_ADM")
+	//@Secured("ADM")
 	@GetMapping("/editar_brinquedo")
 	public String editBrinquedo(Model model, @RequestParam String id) {
 		
