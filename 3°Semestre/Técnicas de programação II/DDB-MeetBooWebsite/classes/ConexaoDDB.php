@@ -10,11 +10,11 @@ class ConexaoDDB{
 
     public function pegarConexao(){
         $client = new DynamoDbClient([
-            'region' => 'sa-east-1',
+            'region' => '',
             'version' => 'latest',
             'credentials' => [
-                'key' => 'AKIAVQPHQ63LCKBNNOUR',
-                'secret' => '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',
+                'key' => '',
+                'secret' => '',
             ],
         ]);
         return $client;
